@@ -1,19 +1,20 @@
 # training schedule for 1x
-train_cfg = dict(type='EpochBasedTrainLoop', max_epochs=4, val_interval=2)
+train_cfg = dict(type='EpochBasedTrainLoop', max_epochs=4, val_interval=4)
 val_cfg = dict(type='ValLoop')
 test_cfg = dict(type='TestLoop')
 
 # learning rate
 param_scheduler = [
+    dict(type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500, verbose=False),
     dict(
-        type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
-    dict(
-        type='MultiStepLR',
-        begin=0,
-        end=12,
-        by_epoch=True,
-        milestones=[8, 11],
-        gamma=0.1)
+        type='CosineAnnealingLR',
+        eta_min_ratio = 0.1,
+        begin = 500,
+        end = 10000,
+#        T_max = 4,
+        by_epoch = False,
+    ),
+
 ]
 
 # optimizer
