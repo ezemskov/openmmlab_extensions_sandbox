@@ -11,7 +11,9 @@ custom_imports = dict(
 )
 
 custom_hooks = [
-    dict(type='MovingAvgLossHook', window_size=100, key='loss', out_key='loss_avg')
+    dict(type='MovingAvgLossHook', window_size=100, key='train/loss', out_key='train/loss_avg_100'),
+    dict(type='MovingAvgLossHook', window_size=1000, key='train/loss', out_key='train/loss_avg_1K'),
+    dict(type='MovingAvgLossHook', window_size=100, key='train/acc', out_key='train/acc_avg_100'),
 ]
 
 visualizer_config = dict(
