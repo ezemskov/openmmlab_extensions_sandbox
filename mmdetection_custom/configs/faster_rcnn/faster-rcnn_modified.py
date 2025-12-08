@@ -5,6 +5,15 @@ _base_ = [
     '../../../../mmdetection/configs/_base_/default_runtime.py'
 ]
 
+custom_imports = dict(
+    imports = _base_.custom_imports.imports + ['mmdetection_custom.hooks.moving_avg_hook'],
+    allow_failed_imports=False
+)
+
+custom_hooks = [
+    dict(type='MovingAvgLossHook', window_size=100, key='loss', out_key='loss_avg')
+]
+
 visualizer_config = dict(
     project_name = 'EugeneSandbox',
     task_name = 'faster-rcnn_r50',
