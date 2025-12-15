@@ -5,9 +5,8 @@ test_cfg = dict(type='TestLoop')
 
 # learning rate
 param_scheduler = [
-    dict(type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=500),
-    dict(type='CosineAnnealingLR', eta_min_ratio = 0.1, begin = 150000, end = 240000, by_epoch = False),
-    dict(type='CosineAnnealingLR', eta_min_ratio = 0.1, begin = 300000, end = 360000, by_epoch = False),
+    dict(type='LinearLR', start_factor=0.001, by_epoch=False, begin=0, end=2000),
+    dict(type='CosineAnnealingLR', eta_min_ratio = 0.01, begin = 2000, end = 10**5, by_epoch = False),
 ]
 
 # optimizer

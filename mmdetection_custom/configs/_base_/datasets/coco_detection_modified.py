@@ -2,8 +2,10 @@
 dataset_type = 'CocoDataset'
 data_root = '/root/workspace_openmmlab/datasets/coco/'
 
-custom_imports = dict(imports=['mmengine_custom.dataset.subset_sampler'],
+custom_imports = dict(imports=['mmengine_custom.dataset.subset_sampler',
+                               'mmdetection_custom.evaluation.metrics.coco_custom_metric'],
                       allow_failed_imports=False)
+
 
 # Example to use different file client
 # Method 1: simply set the data root and let the file I/O module
@@ -68,7 +70,7 @@ val_dataloader = dict(
 test_dataloader = val_dataloader
 
 val_evaluator = dict(
-    type='CocoMetric',
+    type='CocoMetric90',
     ann_file=data_root + 'annotations/instances_val2017.json',
     metric='bbox',
     format_only=False,
